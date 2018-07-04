@@ -1,5 +1,46 @@
 # Anime Channel Servers Parser
 
+### === Actualización ===
+
+Por comodidad y para el futuro, he añadído un submódulo llamado "Hoster" que se
+encargará de parsear la URL directa del servidor (Mp4upload, Rapidvideo, Okru, Fire, ...)
+
+De esta forma la tarea del IServer ahora es encontrar el enlace a su servidor
+basándose en cómo devuelve las urls animeflv para después utilizar el parser correspondiente.
+
+En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden contener algunos errores)
+
+##### Hosters
+
+* ~~Mp4upload~~
+* ~~Rapidvideo~~
+* Mega
+* Okru
+* ~~Mediafire~~
+* Streamango
+* Openload
+* Yourupload
+* Maru
+* Netu
+
+##### IServers
+
+* ~~Mp4upload~~
+* ~~Rapidvideo~~
+* Mega
+* Okru
+* ~~Mediafire~~ (Ya no es usado por animeflv)
+* Streamango
+* Openload
+* Yourupload
+* Maru
+* Netu
+
+De forma adicional, se han creado tests para cada uno de los servidores, tanto de la función de los hosters como de los servers
+en caso de fallar alguno, primero intentar obtener nuevos enlaces por parte de animeflv
+
+### === Fin Actualización ===
+
 ### Información
 
 Debido a los recientes cambios implementados por AnimeFLV y con intención
@@ -74,8 +115,8 @@ public class MockServer extends GenericServer implements IServer {
 ```
 
 En el archivo `main.kt` se definen las urls tal y como llegarán a los IServer cuando
-se llame al método `getURL()`, esto significa que cuando si se encuentra
-el servidor RV cuando desde el host de RV se llame a `getURL()` nos devolverá un enlace
+se llame al método `getURL()`, esto significa que si se encuentra
+el servidor RV cuando en el IServer de RV se llame a `getURL()` nos devolverá un enlace
 similar al siguiente: 
 
 `https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=rv&value=FSR7Q9KPP2`
