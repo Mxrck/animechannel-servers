@@ -1,5 +1,6 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
+import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mp4Upload
@@ -33,9 +34,9 @@ class Mp4UploadServer : GenericServer(), IServer {
                     if  (matcher.find())
                     {
                         val link = matcher.group(1)
-                        val deffered = Mp4Upload().directLink(link)
-                        while (!deffered.isCompleted) { }
-                        setDirectUrl(deffered.getCompleted())
+                        runBlocking {
+                            setDirectUrl(Mp4Upload().directLink(link).await())
+                        }
                     }
                 }
                 catch (exception : Exception) { /* LOG */  }
