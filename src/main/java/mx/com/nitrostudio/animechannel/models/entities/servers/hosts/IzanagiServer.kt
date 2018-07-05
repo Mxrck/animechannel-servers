@@ -9,7 +9,7 @@ import kotlin.concurrent.thread
 
 class IzanagiServer : GenericServer(), IServer {
 
-    override fun getName(): String? = "Izanagi"
+    override fun getName(): String? = "Fire"
 
     override fun isProcessable(): Boolean {
         return true
