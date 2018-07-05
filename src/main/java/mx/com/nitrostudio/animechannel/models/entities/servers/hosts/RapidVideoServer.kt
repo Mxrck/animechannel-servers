@@ -1,6 +1,6 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.RapidVideo
@@ -20,27 +20,17 @@ class RapidVideoServer : GenericServer(), IServer {
     }
 
     override fun process(callback: ICallback<String?>?): Thread? {
-        return thread(start = true){
+        return thread(start = true) {
             callback?.onStart()
             val http = Jbro.getInstance()
             val auxCache = http.isSkipCache
             http.isSkipCache = false
-            if (getDirectURL() == null)
-            {
+            if (getDirectURL() == null) {
                 try {
-                    val response = http.connect(getURL()).get().toString()
-                    val pattern = Pattern.compile("var +redir *= *[\"'](.*?)[\"'];")
-                    val matcher = pattern.matcher(response)
-                    if  (matcher.find())
-                    {
-                        val link = matcher.group(1)
-                        runBlocking {
-                            setDirectUrl(RapidVideo().directLink(link).await())
-                        }
-                    }
-                }
-                catch (exception : Exception) { /* LOG */  }
-                finally {
+                    val rapidVideo = RapidVideo()
+                    async { setDirectUrl(rapidVideo.directLink(getURL() ?: "").await()) }
+                } catch (exception: Exception) { /* LOG */
+                } finally {
                     http.isSkipCache = auxCache
                 }
             }
