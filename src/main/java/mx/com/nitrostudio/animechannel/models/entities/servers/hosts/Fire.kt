@@ -1,6 +1,7 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
 import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mediafire
@@ -21,8 +22,9 @@ class Fire : GenericServer(), IServer {
             try {
                 if (getDirectURL() == null)
                 {
-                    val mediafire = Mediafire()
-                    async { setDirectUrl(mediafire.directLink(getURL() ?: "").await()) }
+                    runBlocking {
+                        setDirectUrl(Mediafire().directLink(getURL() ?: "").await())
+                    }
                 }
             }
             catch (exception : Exception) { /* LOG */ }
