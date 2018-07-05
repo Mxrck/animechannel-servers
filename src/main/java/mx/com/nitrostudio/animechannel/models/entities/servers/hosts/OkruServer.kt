@@ -10,7 +10,7 @@ import kotlin.concurrent.thread
 
 class OkruServer : GenericServer(), IServer {
 
-    override fun getName(): String? = "Fire"
+    override fun getName(): String? = "Okru"
 
     override fun isProcessable(): Boolean {
         return true
