@@ -14,12 +14,13 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 
 * ~~Mp4upload~~
 * ~~Rapidvideo~~
+* ~~Izanagi~~
 * Mega
-* Okru
+* ~~Okru~~
 * ~~Mediafire~~
 * Streamango
 * Openload
-* Yourupload
+* ~~Yourupload~~
 * Maru
 * Netu
 
@@ -27,12 +28,13 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 
 * ~~Mp4upload~~
 * ~~Rapidvideo~~
+* ~~Izanagi~~
 * Mega
-* Okru
+* ~~Okru~~
 * ~~Mediafire~~ (Ya no es usado por animeflv)
 * Streamango
 * Openload
-* Yourupload
+* ~~Yourupload~~
 * Maru
 * Netu
 
