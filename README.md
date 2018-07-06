@@ -1,4 +1,6 @@
-# Anime Channel Servers Parser
+# Anime Channel Servers Parser 
+
+[![Build Status](https://travis-ci.com/Mxrck/animechannel-servers.svg?branch=dev)](https://travis-ci.com/Mxrck/animechannel-servers)
 
 ### === Actualización ===
 
