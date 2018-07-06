@@ -27,7 +27,10 @@ class Fire : GenericServer(), IServer {
                     }
                 }
             }
-            catch (exception : Exception) { /* LOG */ }
+            catch (exception : Exception) {
+                /* LOG */
+                exception.printStackTrace()
+            }
             if (getDirectURL() != null)
                 callback?.onSuccess(getDirectURL())
             else

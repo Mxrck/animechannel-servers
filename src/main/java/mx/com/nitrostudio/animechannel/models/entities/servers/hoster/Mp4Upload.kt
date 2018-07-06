@@ -63,6 +63,7 @@ class Mp4Upload : IHoster {
         }
         catch (exception : Exception)
         {
+            exception.printStackTrace()
             return null
         }
         return null

@@ -39,7 +39,11 @@ class RapidVideoServer : GenericServer(), IServer {
                         }
                     }
                 }
-                catch (exception : Exception) { /* LOG */  }
+                catch (exception : Exception)
+                {
+                    /* LOG */
+                    exception.printStackTrace()
+                }
                 finally {
                     http.isSkipCache = auxCache
                 }
