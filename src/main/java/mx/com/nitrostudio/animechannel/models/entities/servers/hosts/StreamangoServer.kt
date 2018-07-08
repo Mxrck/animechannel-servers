@@ -11,9 +11,7 @@ import kotlin.concurrent.thread
 
 class StreamangoServer : GenericServer(), IServer {
 
-    override fun getName(): String? {
-        return "Streamango"
-    }
+    override fun getName(): String? = "Mango"
 
     override fun isProcessable(): Boolean {
         return true

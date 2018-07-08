@@ -11,9 +11,7 @@ import kotlin.concurrent.thread
 
 class RapidVideoServer : GenericServer(), IServer {
 
-    override fun getName(): String? {
-        return "Rapidvideo"
-    }
+    override fun getName(): String? = "RV"
 
     override fun isProcessable(): Boolean {
         return true

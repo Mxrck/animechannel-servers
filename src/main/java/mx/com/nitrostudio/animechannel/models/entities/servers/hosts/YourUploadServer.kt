@@ -11,9 +11,7 @@ import kotlin.concurrent.thread
 
 class YourUploadServer : GenericServer() {
 
-    override fun getName(): String? {
-        return "YourUpload"
-    }
+    override fun getName(): String? = "YourUpload"
 
     override fun isProcessable(): Boolean {
         return true

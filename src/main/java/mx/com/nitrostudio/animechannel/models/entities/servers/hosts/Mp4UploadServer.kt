@@ -11,9 +11,7 @@ import kotlin.concurrent.thread
 
 class Mp4UploadServer : GenericServer(), IServer {
 
-    override fun getName(): String? {
-        return "Mp4upload"
-    }
+    override fun getName(): String? = "MP4Upload"
 
     override fun isProcessable(): Boolean {
         return true
