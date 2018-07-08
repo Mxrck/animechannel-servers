@@ -3,15 +3,17 @@ package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
-import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Okru
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Streamango
 import mx.com.nitrostudio.animechannel.models.webservice.ICallback
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
 import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
-class OkruServer : GenericServer(), IServer {
+class StreamangoServer : GenericServer(), IServer {
 
-    override fun getName(): String? = "Okru"
+    override fun getName(): String? {
+        return "Streamango"
+    }
 
     override fun isProcessable(): Boolean {
         return true
@@ -33,11 +35,15 @@ class OkruServer : GenericServer(), IServer {
                     {
                         val link = matcher.group(1)
                         runBlocking {
-                            setDirectUrl(Okru().directLink(link).await())
+                            setDirectUrl(Streamango().directLink(link).await())
                         }
                     }
                 }
-                catch (exception : Exception) { /* LOG */  }
+                catch (exception : Exception)
+                {
+                    /* LOG */
+                    exception.printStackTrace()
+                }
                 finally {
                     http.isSkipCache = auxCache
                 }
