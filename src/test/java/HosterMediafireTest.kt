@@ -7,7 +7,7 @@ import org.junit.jupiter.api.function.Executable
 class HosterMediafireTest {
 
     @Test
-    fun MFDownloadLink() = runBlocking {
+    fun MediafireDownloadValidLink() = runBlocking {
         val link = "http://www.mediafire.com/file/0djwmh1yr014od3/Colaboraci%C3%B3n+Top+Anime-DongHua+Openings+Invierno+2018.xlsx"
         val directLink = Mediafire().directLink(link).await()
         println(directLink)
@@ -15,6 +15,14 @@ class HosterMediafireTest {
                 Executable { Assertions.assertNotNull(directLink) },
                 Executable { Assertions.assertNotEquals("", directLink) }
         )
+    }
+
+    @Test
+    fun MediafireDownloadInvalidLink() = runBlocking {
+        val link = "http://www.mediafire.com/file/00000000000"
+        val directLink = Mediafire().directLink(link).await()
+        println(directLink)
+        Assertions.assertNull(directLink)
     }
 
 }

@@ -1,9 +1,10 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hoster
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
-import org.json.JSONObject
 
 class Izanagi :  IHoster {
 
@@ -16,8 +17,10 @@ class Izanagi :  IHoster {
             if (isValidLink(link))
             {
                 val response = http.connect(link.replace("embed", "check")).get().toString()
-                val file = JSONObject(response).getString("file").replace("\\", "").replace("/", "//").replace(":////", "://")
-                directLink = if (!file.isEmpty()) file else null
+                val type = object : TypeToken<Map<String,String>>() {}.type
+                val map = Gson().fromJson<Map<String,String>>(response, type)
+                val file = map["file"]?.replace("\\", "")?.replace("/", "//")?.replace(":////", "://")
+                directLink = if (file != null && !file.isEmpty()) file else null
             }
         }
         catch (exception : Exception)

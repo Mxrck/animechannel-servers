@@ -71,7 +71,7 @@ class Mp4Upload : IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.toLowerCase().contains("server=mp4") // TODO: Completar validación
+        return link.toLowerCase().contains("mp4upload.com") // TODO: Completar validación
     }
 
 }

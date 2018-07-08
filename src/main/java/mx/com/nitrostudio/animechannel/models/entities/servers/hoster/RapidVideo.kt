@@ -4,7 +4,6 @@ import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
 import org.jsoup.Jsoup
-import java.util.regex.Pattern
 
 class RapidVideo : IHoster {
 
@@ -16,9 +15,11 @@ class RapidVideo : IHoster {
         try {
             if (isValidLink(link))
             {
-                val rvLink="&q=720p|&q=480p|&q=360p".toRegex().replace(link,"")
-                val file = getRapidVideoLink(Jsoup.connect("$rvLink&q=720p").get().html())
-                directLink = if (!file.isEmpty()) file else null
+                val response = http.connect(link).get().toString()
+                val document = Jsoup.parse(response)
+                val element = document.select("video source").first()
+                val file = element?.attr("src")
+                directLink = if (file != null && !file.isEmpty()) file else null
             }
         }
         catch (exception : Exception)
@@ -35,15 +36,7 @@ class RapidVideo : IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.toLowerCase().contains("&server=rv") // TODO: Completar validación
-    }
-
-    private fun getRapidVideoLink(link: String): String
-    {
-        val pattern = Pattern.compile("\"(http.*\\.mp4)\"")
-        val matcher = pattern.matcher(link)
-        matcher.find()
-        return matcher.group(1)
+        return link.toLowerCase().contains("rapidvideo.com") // TODO: Completar validación
     }
 
 }

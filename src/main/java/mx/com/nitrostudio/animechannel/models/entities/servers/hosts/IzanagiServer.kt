@@ -1,6 +1,7 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
 import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Izanagi
@@ -9,7 +10,7 @@ import kotlin.concurrent.thread
 
 class IzanagiServer : GenericServer(), IServer {
 
-    override fun getName(): String? = "Fire"
+    override fun getName(): String? = "Izanagi"
 
     override fun isProcessable(): Boolean {
         return true
@@ -21,9 +22,13 @@ class IzanagiServer : GenericServer(), IServer {
             try {
                 if (getDirectURL() == null) {
                     val izanagi = Izanagi()
-                    async { setDirectUrl(izanagi.directLink(getURL() ?: "").await()) }
+                    runBlocking {
+                        setDirectUrl(izanagi.directLink(getURL() ?: "").await())
+                    }
                 }
-            } catch (exception: Exception) { /* LOG */
+            } catch (exception: Exception) {
+                /* LOG */
+                exception.printStackTrace()
             }
             if (getDirectURL() != null)
                 callback?.onSuccess(getDirectURL())

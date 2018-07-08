@@ -1,13 +1,12 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hoster
 
+import com.google.gson.Gson
+import com.google.gson.JsonElement
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
-import org.json.JSONObject
 import org.jsoup.Jsoup
-import java.util.regex.Pattern
-import org.json.JSONArray
-
 
 
 class Okru :  IHoster {
@@ -22,13 +21,18 @@ class Okru :  IHoster {
             {
                 val fullJson= Jsoup.connect(link).get().select("div[data-module='OKVideo']").first().attr("data-options")
                 val cutJson="{"+fullJson.substring(fullJson.lastIndexOf("\\\"videos"), fullJson.indexOf(",\\\"metadataEmbedded")).replace("\\&quot;", "\"").replace("\\u0026", "&").replace("\\", "").replace("%3B", ";") + "}"
-                val array = JSONObject(cutJson).getJSONArray("videos")
-                for (i in 0 until array.length()) {
-                    val `object` = array.getJSONObject(i)
-                    when (`object`.getString("name")) {
-                        "hd" -> {
-                            val file=`object`.getString("url")
-                            directLink = if (!file.isEmpty()) file else null
+                val type = object : TypeToken<Map<String, JsonElement>>() {}.type
+                val map = Gson().fromJson<Map<String,JsonElement>>(cutJson, type)
+                val array = map["videos"]?.asJsonArray
+                if (array != null)
+                {
+                    for (i in 0 until array.size()) {
+                        val `object` = array.get(i).asJsonObject
+                        when (`object`.get("name").asString) {
+                            "hd" -> {
+                                val file=`object`.get("url").asString
+                                directLink = if (!file.isEmpty()) file else null
+                            }
                         }
                     }
                 }
@@ -38,6 +42,7 @@ class Okru :  IHoster {
         {
             // Log
             directLink = null
+            exception.printStackTrace()
         }
         finally {
             http.isSkipCache = auxCache
@@ -47,7 +52,7 @@ class Okru :  IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.contains("s=izanagi") // TODO: Completar validación
+        return link.contains("ok.ru") // TODO: Completar validación
     }
 
 }
