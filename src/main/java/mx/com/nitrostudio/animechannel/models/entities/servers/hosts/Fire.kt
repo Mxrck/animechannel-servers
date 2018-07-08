@@ -1,6 +1,5 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer

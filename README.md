@@ -20,7 +20,7 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * Mega
 * ~~Okru~~
 * ~~Mediafire~~
-* Streamango
+* ~~Streamango~~
 * Openload
 * ~~Yourupload~~
 * Maru
@@ -34,7 +34,7 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * Mega
 * ~~Okru~~
 * ~~Mediafire~~ (Ya no es usado por animeflv)
-* Streamango
+* ~~Streamango~~
 * Openload
 * ~~Yourupload~~
 * Maru
