@@ -1,13 +1,10 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Izanagi
 import mx.com.nitrostudio.animechannel.models.webservice.ICallback
-import mx.com.nitrostudio.animechannel.services.jbro.Jbro
-import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
 class IzanagiServer : GenericServer(), IServer {
@@ -21,20 +18,12 @@ class IzanagiServer : GenericServer(), IServer {
     override fun process(callback: ICallback<String?>?): Thread? {
         return thread(start = true) {
             callback?.onStart()
-            val http = Jbro.getInstance()
-            val auxCache = http.isSkipCache
-            http.isSkipCache = false
-            if (getDirectURL() == null)
-            {
-                try {
-                    runBlocking {
-                        setDirectUrl(Izanagi().directLink(getURL()?:"").await())
-                    }
+            try {
+                if (getDirectURL() == null) {
+                    val izanagi = Izanagi()
+                    async { setDirectUrl(izanagi.directLink(getURL() ?: "").await()) }
                 }
-                catch (exception : Exception) { /* LOG */  }
-                finally {
-                    http.isSkipCache = auxCache
-                }
+            } catch (exception: Exception) { /* LOG */
             }
             if (getDirectURL() != null)
                 callback?.onSuccess(getDirectURL())
