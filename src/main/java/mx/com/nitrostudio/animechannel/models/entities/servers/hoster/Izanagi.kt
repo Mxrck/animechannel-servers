@@ -1,11 +1,12 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hoster
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
-import java.util.regex.Pattern
 
-class Mediafire : IHoster {
+class Izanagi :  IHoster {
 
     override fun directLink(link: String): Deferred<String?> = async {
         var directLink : String? = null
@@ -15,17 +16,16 @@ class Mediafire : IHoster {
         try {
             if (isValidLink(link))
             {
-                val response = http.connect(link).get().toString()
-                val patternVideo = Pattern.compile("[\"']http://download(.*?)[\"']")
-                val matcher = patternVideo.matcher(response)
-                val file = if (matcher.find()) matcher.group(1) else null
+                val response = http.connect(link.replace("embed", "check")).get().toString()
+                val type = object : TypeToken<Map<String,String>>() {}.type
+                val map = Gson().fromJson<Map<String,String>>(response, type)
+                val file = map["file"]?.replace("\\", "")?.replace("/", "//")?.replace(":////", "://")
                 directLink = if (file != null && !file.isEmpty()) file else null
             }
         }
         catch (exception : Exception)
         {
             // Log
-            exception.printStackTrace();
             directLink = null
         }
         finally {
@@ -36,7 +36,7 @@ class Mediafire : IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.toLowerCase().contains("mediafire.com") // TODO: Completar validación
+        return link.contains("s=izanagi") // TODO: Completar validación
     }
 
 }
