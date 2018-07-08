@@ -3,10 +3,9 @@ package mx.com.nitrostudio.animechannel.models.entities.servers.hoster
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
-import org.jsoup.Jsoup
-import java.util.regex.Pattern
+import org.json.JSONObject
 
-class RapidVideo : IHoster {
+class Izanagi :  IHoster {
 
     override fun directLink(link: String): Deferred<String?> = async {
         var directLink : String? = null
@@ -16,8 +15,8 @@ class RapidVideo : IHoster {
         try {
             if (isValidLink(link))
             {
-                val rvLink="&q=720p|&q=480p|&q=360p".toRegex().replace(link,"")
-                val file = getRapidVideoLink(Jsoup.connect("$rvLink&q=720p").get().html())
+                val response = http.connect(link.replace("embed", "check")).get().toString()
+                val file = JSONObject(response).getString("file").replace("\\", "").replace("/", "//").replace(":////", "://")
                 directLink = if (!file.isEmpty()) file else null
             }
         }
@@ -34,15 +33,7 @@ class RapidVideo : IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.toLowerCase().contains("&server=rv") // TODO: Completar validación
-    }
-
-    private fun getRapidVideoLink(link: String): String
-    {
-        val pattern = Pattern.compile("\"(http.*\\.mp4)\"")
-        val matcher = pattern.matcher(link)
-        matcher.find()
-        return matcher.group(1)
+        return link.contains("s=izanagi") // TODO: Completar validación
     }
 
 }

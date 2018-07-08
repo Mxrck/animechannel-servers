@@ -11,18 +11,29 @@ class YourUpload : IHoster {
             val regex = """jwplayerOptions.*?file:.*?['"]+(.*?)['"]+""".toRegex()
             val match = regex.find(response)
             val (url) = match!!.destructured
-            url
+            val finalUrl = Jbro.getInstance().addHeader("Referer",link).getUrl(url).await()
+            finalUrl
         } catch (ex: Exception) {
             ex.printStackTrace()
             null
         }
     }
-}
 
-fun Jbro.getContents(url: String): Deferred<String> = async {
-    val auxCache = isSkipCache
-    isSkipCache = false
-    val result = connect(url).get().toString()
-    isSkipCache = auxCache
-    result
+
+    fun Jbro.getContents(url: String): Deferred<String> = async {
+        val auxCache = isSkipCache
+        isSkipCache = false
+        val result = connect(url).get().toString()
+        isSkipCache = auxCache
+        result
+    }
+
+    fun Jbro.getUrl(url: String): Deferred<String?> = async {
+        val auxCache = isSkipCache
+        isSkipCache = false
+        val result = connect(url).get().url
+        isSkipCache = auxCache
+        if (result!=url)result else null
+    }
+
 }
