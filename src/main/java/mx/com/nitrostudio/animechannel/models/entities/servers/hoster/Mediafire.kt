@@ -25,6 +25,7 @@ class Mediafire : IHoster {
         catch (exception : Exception)
         {
             // Log
+            exception.printStackTrace();
             directLink = null
         }
         finally {

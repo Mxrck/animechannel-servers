@@ -33,7 +33,10 @@ class YourUploadServer : GenericServer() {
 
                         setDirectUrl(YourUpload().directLink(link).await())
                     }
-                } catch (exception: Exception) { /* LOG */
+                } catch (exception: Exception)
+                {
+                    /* LOG */
+                    exception.printStackTrace()
                 }
             }
             if (getDirectURL() != null)
