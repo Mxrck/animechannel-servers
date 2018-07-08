@@ -20,8 +20,7 @@ class Okru :  IHoster {
         try {
             if (isValidLink(link))
             {
-                val okruLink = extractOkruLink(http.connect(link).get().toString())
-                val fullJson= Jsoup.connect(okruLink).get().select("div[data-module='OKVideo']").first().attr("data-options")
+                val fullJson= Jsoup.connect(link).get().select("div[data-module='OKVideo']").first().attr("data-options")
                 val cutJson="{"+fullJson.substring(fullJson.lastIndexOf("\\\"videos"), fullJson.indexOf(",\\\"metadataEmbedded")).replace("\\&quot;", "\"").replace("\\u0026", "&").replace("\\", "").replace("%3B", ";") + "}"
                 val array = JSONObject(cutJson).getJSONArray("videos")
                 for (i in 0 until array.length()) {
@@ -49,12 +48,6 @@ class Okru :  IHoster {
     private fun isValidLink(link: String) : Boolean
     {
         return link.contains("s=izanagi") // TODO: Completar validación
-    }
-
-    fun extractOkruLink(html: String): String {
-        val matcher = Pattern.compile("\"(https://ok\\.ru.*)\"").matcher(html)
-        matcher.find()
-        return matcher.group(1)
     }
 
 }

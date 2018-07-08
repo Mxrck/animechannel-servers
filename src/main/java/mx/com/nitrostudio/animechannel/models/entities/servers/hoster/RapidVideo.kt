@@ -16,8 +16,7 @@ class RapidVideo : IHoster {
         try {
             if (isValidLink(link))
             {
-                var rvLink = getRapidLink(http.connect(link).get().toString())
-                rvLink="&q=720p|&q=480p|&q=360p".toRegex().replace(rvLink,"")
+                val rvLink="&q=720p|&q=480p|&q=360p".toRegex().replace(link,"")
                 val file = getRapidVideoLink(Jsoup.connect("$rvLink&q=720p").get().html())
                 directLink = if (!file.isEmpty()) file else null
             }
@@ -38,14 +37,8 @@ class RapidVideo : IHoster {
         return link.toLowerCase().contains("&server=rv") // TODO: Completar validación
     }
 
-    private fun getRapidLink(link: String): String {
-        val pattern = Pattern.compile("\"(.*rapidvideo.*)\"")
-        val matcher = pattern.matcher(link)
-        matcher.find()
-        return matcher.group(1)
-    }
-
-    private fun getRapidVideoLink(link: String): String {
+    private fun getRapidVideoLink(link: String): String
+    {
         val pattern = Pattern.compile("\"(http.*\\.mp4)\"")
         val matcher = pattern.matcher(link)
         matcher.find()

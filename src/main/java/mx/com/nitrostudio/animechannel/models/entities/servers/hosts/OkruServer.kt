@@ -1,11 +1,15 @@
 package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 
 import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Izanagi
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mp4Upload
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Okru
 import mx.com.nitrostudio.animechannel.models.webservice.ICallback
+import mx.com.nitrostudio.animechannel.services.jbro.Jbro
+import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
 class OkruServer : GenericServer(), IServer {
@@ -19,12 +23,27 @@ class OkruServer : GenericServer(), IServer {
     override fun process(callback: ICallback<String?>?): Thread? {
         return thread(start = true) {
             callback?.onStart()
-            try {
-                if (getDirectURL() == null) {
-                    val okru = Okru()
-                    async { setDirectUrl(okru.directLink(getURL() ?: "").await()) }
+            val http = Jbro.getInstance()
+            val auxCache = http.isSkipCache
+            http.isSkipCache = false
+            if (getDirectURL() == null)
+            {
+                try {
+                    val response = http.connect(getURL()).get().toString()
+                    val pattern = Pattern.compile("var +redir *= *[\"'](.*?)[\"'];")
+                    val matcher = pattern.matcher(response)
+                    if  (matcher.find())
+                    {
+                        val link = matcher.group(1)
+                        runBlocking {
+                            setDirectUrl(Okru().directLink(link).await())
+                        }
+                    }
                 }
-            } catch (exception: Exception) { /* LOG */
+                catch (exception : Exception) { /* LOG */  }
+                finally {
+                    http.isSkipCache = auxCache
+                }
             }
             if (getDirectURL() != null)
                 callback?.onSuccess(getDirectURL())
