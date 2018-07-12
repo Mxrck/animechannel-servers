@@ -135,7 +135,7 @@ public class Jbro implements Serializable {
 
             response = new Response(browser, this, url, domain);
             int code = response.getCode();
-            if (code == 301 || code == 302) {
+            if (code == 301 || code == 302 && followRedirects) {
                 return connect(response.getUrl());
             }
 

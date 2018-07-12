@@ -1,15 +1,15 @@
 import kotlinx.coroutines.experimental.runBlocking
-import mx.com.nitrostudio.animechannel.models.entities.servers.hosts.Mp4UploadServer
+import mx.com.nitrostudio.animechannel.models.entities.servers.hosts.MaruServer
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 
-class ServerMp4uploadTest {
+class ServerMaruTest {
 
     @Test
-    fun Mp4uploadDownloadValidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=mp4&value=s3ff4yo4jl1b"
-        val server = Mp4UploadServer()
+    fun MaruDownloadValidLink() = runBlocking {
+        val link = "https://animeflv.net/redirector.php?top=/ver/49555/one-room-2nd-season-1&server=maru&value=8995617145282887915#budyak.rus#235"
+        val server = MaruServer()
         server.setUrl(link)
         server.process(null)?.join()
         val directLink = server.getDirectURL()
@@ -21,9 +21,9 @@ class ServerMp4uploadTest {
     }
 
     @Test
-    fun Mp4uploadDownloadInvalidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=XXX&value=000000"
-        val server = Mp4UploadServer()
+    fun MaruDownloadInvalidLink() = runBlocking {
+        val link = "https://animeflv.net/redirector.php?top=/ver/49535/hataraku-saibou-tv-1&server=maru&value=00000000"
+        val server = MaruServer()
         server.setUrl(link)
         server.process(null)?.join()
         val directLink = server.getDirectURL()

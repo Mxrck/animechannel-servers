@@ -3,13 +3,13 @@ package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
-import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mediafire
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Izanagi
 import mx.com.nitrostudio.animechannel.models.webservice.ICallback
 import kotlin.concurrent.thread
 
-class Fire : GenericServer(), IServer {
+class IzanagiServer : GenericServer(), IServer {
 
-    override fun getName(): String? = "Fire"
+    override fun getName(): String? = "Izanagi"
 
     override fun isProcessable(): Boolean {
         return true
@@ -19,14 +19,13 @@ class Fire : GenericServer(), IServer {
         return thread(start = true) {
             callback?.onStart()
             try {
-                if (getDirectURL() == null)
-                {
+                if (getDirectURL() == null) {
+                    val izanagi = Izanagi()
                     runBlocking {
-                        setDirectUrl(Mediafire().directLink(getURL() ?: "").await())
+                        setDirectUrl(izanagi.directLink(getURL() ?: "").await())
                     }
                 }
-            }
-            catch (exception : Exception) {
+            } catch (exception: Exception) {
                 /* LOG */
                 exception.printStackTrace()
             }

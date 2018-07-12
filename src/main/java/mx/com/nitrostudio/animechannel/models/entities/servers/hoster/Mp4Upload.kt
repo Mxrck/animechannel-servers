@@ -63,6 +63,7 @@ class Mp4Upload : IHoster {
         }
         catch (exception : Exception)
         {
+            exception.printStackTrace()
             return null
         }
         return null
@@ -70,7 +71,7 @@ class Mp4Upload : IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.toLowerCase().contains("mp4upload") // TODO: Completar validación
+        return link.toLowerCase().contains("mp4upload.com") // TODO: Completar validación
     }
 
 }

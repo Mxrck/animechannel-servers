@@ -1,15 +1,15 @@
 import kotlinx.coroutines.experimental.runBlocking
-import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mp4Upload
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Maru
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 
-class HosterMp4uploadTest {
+class HosterMaruTest {
 
     @Test
-    fun Mp4uploadDownloadValidLink() = runBlocking {
-        val link = "https://www.mp4upload.com/embed-s3ff4yo4jl1b.html"
-        val directLink = Mp4Upload().directLink(link).await()
+    fun MaruDownloadValidLink() = runBlocking {
+        val link = "https://my.mail.ru/video/embed/8995617145282887915"
+        val directLink = Maru().directLink(link).await()
         println(directLink)
         Assertions.assertAll(
                 Executable { Assertions.assertNotNull(directLink) },
@@ -18,9 +18,9 @@ class HosterMp4uploadTest {
     }
 
     @Test
-    fun Mp4uploadDownloadInvalidLink() = runBlocking {
-        val link = "https://www.mp4upload.com/embed-0000000000.html"
-        val directLink = Mp4Upload().directLink(link).await()
+    fun MaruDownloadInvalidLink() = runBlocking {
+        val link = "https://my.mail.ru/video/embed/00000000000"
+        val directLink = Maru().directLink(link).await()
         println(directLink)
         Assertions.assertNull(directLink)
     }

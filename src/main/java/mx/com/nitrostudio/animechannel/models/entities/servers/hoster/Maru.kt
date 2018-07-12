@@ -5,7 +5,7 @@ import kotlinx.coroutines.experimental.async
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
 import java.util.regex.Pattern
 
-class Mediafire : IHoster {
+class Maru : IHoster {
 
     override fun directLink(link: String): Deferred<String?> = async {
         var directLink : String? = null
@@ -15,11 +15,17 @@ class Mediafire : IHoster {
         try {
             if (isValidLink(link))
             {
+                val link = link.replace("video/embed","+/video/meta")
                 val response = http.connect(link).get().toString()
-                val patternVideo = Pattern.compile("[\"']http://download(.*?)[\"']")
+                val patternVideo = Pattern.compile("videos\":\\[\\{\"url\":\"(.*)\",\".*\"key\":\"720p")
                 val matcher = patternVideo.matcher(response)
                 val file = if (matcher.find()) matcher.group(1) else null
-                directLink = if (file != null && !file.isEmpty()) file else null
+                var uncleanedLink = if (file != null && !file.isEmpty()) file else null
+                if (uncleanedLink != null && uncleanedLink.startsWith("//")){
+                    uncleanedLink = uncleanedLink.replaceFirst("//", "https://")
+                    uncleanedLink = uncleanedLink.replace("slave[]","slave%5b%5d")
+                }
+                directLink = uncleanedLink
             }
         }
         catch (exception : Exception)
@@ -36,7 +42,7 @@ class Mediafire : IHoster {
 
     private fun isValidLink(link: String) : Boolean
     {
-        return link.toLowerCase().contains("mediafire.com") // TODO: Completar validación
+        return link.toLowerCase().contains("mail.ru") // TODO: Completar validación
     }
 
 }

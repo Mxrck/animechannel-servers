@@ -1,15 +1,15 @@
 import kotlinx.coroutines.experimental.runBlocking
-import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mp4Upload
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Okru
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 
-class HosterMp4uploadTest {
+class HosterOkruTest {
 
     @Test
-    fun Mp4uploadDownloadValidLink() = runBlocking {
-        val link = "https://www.mp4upload.com/embed-s3ff4yo4jl1b.html"
-        val directLink = Mp4Upload().directLink(link).await()
+    fun OkruValidDownloadLink() = runBlocking {
+        val link = "https://ok.ru/videoembed/927942380143"
+        val directLink = Okru().directLink(link).await()
         println(directLink)
         Assertions.assertAll(
                 Executable { Assertions.assertNotNull(directLink) },
@@ -18,9 +18,9 @@ class HosterMp4uploadTest {
     }
 
     @Test
-    fun Mp4uploadDownloadInvalidLink() = runBlocking {
-        val link = "https://www.mp4upload.com/embed-0000000000.html"
-        val directLink = Mp4Upload().directLink(link).await()
+    fun OkruInvalidDownloadLink() = runBlocking {
+        val link = "https://ok.ru/videoembed/000000000"
+        val directLink = Okru().directLink(link).await()
         println(directLink)
         Assertions.assertNull(directLink)
     }

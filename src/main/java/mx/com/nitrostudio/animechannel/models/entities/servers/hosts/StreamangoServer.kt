@@ -3,16 +3,16 @@ package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
-import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.RapidVideo
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Streamango
 import mx.com.nitrostudio.animechannel.models.webservice.ICallback
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
 import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
-class RapidVideoServer : GenericServer(), IServer {
+class StreamangoServer : GenericServer(), IServer {
 
     override fun getName(): String? {
-        return "Rapidvideo"
+        return "Streamango"
     }
 
     override fun isProcessable(): Boolean {
@@ -20,7 +20,7 @@ class RapidVideoServer : GenericServer(), IServer {
     }
 
     override fun process(callback: ICallback<String?>?): Thread? {
-        return thread(start = true){
+        return thread(start = true) {
             callback?.onStart()
             val http = Jbro.getInstance()
             val auxCache = http.isSkipCache
@@ -35,7 +35,7 @@ class RapidVideoServer : GenericServer(), IServer {
                     {
                         val link = matcher.group(1)
                         runBlocking {
-                            setDirectUrl(RapidVideo().directLink(link).await())
+                            setDirectUrl(Streamango().directLink(link).await())
                         }
                     }
                 }

@@ -3,24 +3,23 @@ package mx.com.nitrostudio.animechannel.models.entities.servers.hosts
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.GenericServer
 import mx.com.nitrostudio.animechannel.models.entities.servers.IServer
-import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.RapidVideo
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Maru
+import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Mp4Upload
 import mx.com.nitrostudio.animechannel.models.webservice.ICallback
 import mx.com.nitrostudio.animechannel.services.jbro.Jbro
 import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
-class RapidVideoServer : GenericServer(), IServer {
+class MaruServer : GenericServer(), IServer {
 
-    override fun getName(): String? {
-        return "Rapidvideo"
-    }
+    override fun getName(): String? = "Maru"
 
     override fun isProcessable(): Boolean {
         return true
     }
 
     override fun process(callback: ICallback<String?>?): Thread? {
-        return thread(start = true){
+        return thread(start = true) {
             callback?.onStart()
             val http = Jbro.getInstance()
             val auxCache = http.isSkipCache
@@ -28,14 +27,21 @@ class RapidVideoServer : GenericServer(), IServer {
             if (getDirectURL() == null)
             {
                 try {
-                    val response = http.connect(getURL()).get().toString()
+                    var link = getURL()
+                    if (link!!.contains("#")) {
+                        var rem = Pattern.compile(".*([#].*[#]\\d*)")
+                        var mat = rem.matcher(link)
+                        if  (mat.find())
+                            link = getURL()!!.replace(mat.group(1),"")
+                    }
+                    val response = http.connect(link).get().toString()
                     val pattern = Pattern.compile("var +redir *= *[\"'](.*?)[\"'];")
                     val matcher = pattern.matcher(response)
                     if  (matcher.find())
                     {
                         val link = matcher.group(1)
                         runBlocking {
-                            setDirectUrl(RapidVideo().directLink(link).await())
+                            setDirectUrl(Maru().directLink(link).await())
                         }
                     }
                 }
