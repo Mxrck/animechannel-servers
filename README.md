@@ -23,7 +23,7 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * ~~Streamango~~
 * Openload
 * ~~Yourupload~~
-* Maru
+* ~~Maru~~
 * Netu
 
 ##### IServers
@@ -37,7 +37,7 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * ~~Streamango~~
 * Openload
 * ~~Yourupload~~
-* Maru
+* ~~Maru~~
 * Netu
 
 De forma adicional, se han creado tests para cada uno de los servidores, tanto de la función de los hosters como de los servers
