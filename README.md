@@ -1,6 +1,10 @@
 # Anime Channel Servers Parser 
 
 [![Build Status](https://travis-ci.com/Mxrck/animechannel-servers.svg?branch=dev)](https://travis-ci.com/Mxrck/animechannel-servers)
+![such code](https://img.shields.io/badge/such-code-blue.svg)
+![many commits](https://img.shields.io/badge/many-commits-green.svg)
+![much contributors](https://img.shields.io/badge/much-contributors-orange.svg)
+![so wow](https://img.shields.io/badge/so-wow-green.svg)
 
 ### === Actualización ===
 
