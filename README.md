@@ -21,6 +21,8 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * ~~Mp4upload~~
 * ~~Rapidvideo~~
 * ~~Izanagi~~
+* ~~Fenix~~
+* ~~Natsuki~~
 * Mega
 * ~~Okru~~
 * ~~Mediafire~~
@@ -35,6 +37,8 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * ~~Mp4upload~~
 * ~~Rapidvideo~~
 * ~~Izanagi~~
+* ~~Fenix~~
+* ~~Natsuki~~
 * Mega
 * ~~Okru~~
 * ~~Mediafire~~ (Ya no es usado por animeflv)
