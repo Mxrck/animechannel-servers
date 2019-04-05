@@ -8,7 +8,7 @@ class HosterOkruTest {
 
     @Test
     fun OkruValidDownloadLink() = runBlocking {
-        val link = "https://ok.ru/videoembed/927942380143"
+        val link = "https://ok.ru/videoembed/1402100779631"
         val directLink = Okru().directLink(link).await()
         println(directLink)
         Assertions.assertAll(
@@ -19,7 +19,7 @@ class HosterOkruTest {
 
     @Test
     fun OkruInvalidDownloadLink() = runBlocking {
-        val link = "https://ok.ru/videoembed/000000000"
+        val link = "https://ok.ru/videoembed/00000000000000"
         val directLink = Okru().directLink(link).await()
         println(directLink)
         Assertions.assertNull(directLink)

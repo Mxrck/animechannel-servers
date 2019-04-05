@@ -1,9 +1,11 @@
+import jdk.nashorn.internal.ir.annotations.Ignore
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Fenix
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 
+@Ignore
 class HosterFenixTest {
 
     @Test

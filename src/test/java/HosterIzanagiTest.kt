@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.annotations.Ignore
 import kotlinx.coroutines.experimental.runBlocking
 import mx.com.nitrostudio.animechannel.models.entities.servers.hoster.Izanagi
 import org.junit.jupiter.api.Assertions

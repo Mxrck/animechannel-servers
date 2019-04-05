@@ -18,7 +18,7 @@ class StreamangoServer : GenericServer(), IServer {
     }
 
     override fun process(callback: ICallback<String?>?): Thread? {
-        return thread(start = true) {
+        return thread(start = true){
             callback?.onStart()
             val http = Jbro.getInstance()
             val auxCache = http.isSkipCache
@@ -26,15 +26,9 @@ class StreamangoServer : GenericServer(), IServer {
             if (getDirectURL() == null)
             {
                 try {
-                    val response = http.connect(getURL()).get().toString()
-                    val pattern = Pattern.compile("var +redir *= *[\"'](.*?)[\"'];")
-                    val matcher = pattern.matcher(response)
-                    if  (matcher.find())
-                    {
-                        val link = matcher.group(1)
-                        runBlocking {
-                            setDirectUrl(Streamango().directLink(link).await())
-                        }
+                    val link = getURL() ?: ""
+                    runBlocking {
+                        setDirectUrl(Streamango().directLink(link).await())
                     }
                 }
                 catch (exception : Exception)

@@ -7,8 +7,8 @@ import org.junit.jupiter.api.function.Executable
 class ServerStreamangoTest {
 
     @Test
-    fun Mp4uploadDownloadValidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=streamango&value=dntlqoqlbmnaolqm"
+    fun streamangoDownloadValidLink() = runBlocking {
+        val link = "https://streamango.com/embed/lnnnmaaqdptcsecn"
         val server = StreamangoServer()
         server.setUrl(link)
         server.process(null)?.join()
@@ -21,8 +21,8 @@ class ServerStreamangoTest {
     }
 
     @Test
-    fun Mp4uploadDownloadInvalidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=xxxxxx&value=000000"
+    fun streamangoDownloadInvalidLink() = runBlocking {
+        val link = "https://streamango.com/embed/0000000000"
         val server = StreamangoServer()
         server.setUrl(link)
         server.process(null)?.join()

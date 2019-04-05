@@ -8,7 +8,7 @@ class ServerRapidvideoTest {
 
     @Test
     fun RapidvideoDownloadValidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=rv&value=FSR7Q9KPP2"
+        val link = "https://www.rapidvideo.com/e/G1MCV0ZY9O&q=480p"
         val server = RapidVideoServer()
         server.setUrl(link)
         server.process(null)?.join()
@@ -21,7 +21,7 @@ class ServerRapidvideoTest {
     }
     @Test
     fun RapidvideoDownloadInalidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=XXX&value=000000"
+        val link = "https://www.rapidvideo.com/e/000000000000=480p"
         val server = RapidVideoServer()
         server.setUrl(link)
         server.process(null)?.join()

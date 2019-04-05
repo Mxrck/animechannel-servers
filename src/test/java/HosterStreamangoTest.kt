@@ -9,7 +9,7 @@ class HosterStreamangoTest {
 
     @Test
     fun StramangoValidDownloadLink() = runBlocking {
-        val link = "https://streamango.com/embed/dntlqoqlbmnaolqm"
+        val link = "https://streamango.com/embed/lnnnmaaqdptcsecn"
         val directLink = Streamango().directLink(link).await()
         println(directLink)
         Assertions.assertAll(
@@ -20,7 +20,7 @@ class HosterStreamangoTest {
 
     @Test
     fun StramangoInvalidDownloadLink() = runBlocking {
-        val link = "https://streamango.com/embed/xxxxxxxxx"
+        val link = "https://streamango.com/embed/xxxxxxxxxxxxxx"
         val directLink = Streamango().directLink(link).await()
         println(directLink)
         Assertions.assertNull(directLink)

@@ -8,7 +8,7 @@ class HosterRapidVideoTest {
 
     @Test
     fun RapidvideoDownloadValidLink() = runBlocking {
-        val link = "https://www.rapidvideo.com/e/FSR7Q9KPP2&q=480p"
+        val link = "https://www.rapidvideo.com/e/G1MCV0ZY9O&q=480p"
         val directLink = RapidVideo().directLink(link).await()
         println(directLink)
         Assertions.assertAll(
@@ -19,7 +19,7 @@ class HosterRapidVideoTest {
 
     @Test
     fun RapidvideoDownloadInvalidLink() = runBlocking {
-        val link = "https://www.rapidvideo.com/e/0000000000&q=480p"
+        val link = "https://www.rapidvideo.com/e/00000000000000&q=480p"
         val directLink = RapidVideo().directLink(link).await()
         println(directLink)
         Assertions.assertNull(directLink)

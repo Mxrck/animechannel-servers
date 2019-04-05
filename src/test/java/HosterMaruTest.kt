@@ -8,7 +8,7 @@ class HosterMaruTest {
 
     @Test
     fun MaruDownloadValidLink() = runBlocking {
-        val link = "https://my.mail.ru/video/embed/8995617145282887897"
+        val link = "https://my.mail.ru/video/embed/8995617145282893183#budyak.rus#5503"
         val directLink = Maru().directLink(link).await()
         println(directLink)
         Assertions.assertAll(

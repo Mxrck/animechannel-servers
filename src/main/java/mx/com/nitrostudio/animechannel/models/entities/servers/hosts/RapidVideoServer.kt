@@ -26,15 +26,9 @@ class RapidVideoServer : GenericServer(), IServer {
             if (getDirectURL() == null)
             {
                 try {
-                    val response = http.connect(getURL()).get().toString()
-                    val pattern = Pattern.compile("var +redir *= *[\"'](.*?)[\"'];")
-                    val matcher = pattern.matcher(response)
-                    if  (matcher.find())
-                    {
-                        val link = matcher.group(1)
-                        runBlocking {
-                            setDirectUrl(RapidVideo().directLink(link).await())
-                        }
+                    val link = getURL() ?: ""
+                    runBlocking {
+                        setDirectUrl(RapidVideo().directLink(link).await())
                     }
                 }
                 catch (exception : Exception)

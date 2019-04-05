@@ -6,7 +6,6 @@
 ![much contributors](https://img.shields.io/badge/much-contributors-orange.svg)
 ![so wow](https://img.shields.io/badge/so-wow-green.svg)
 
-### === Actualización ===
 
 Por comodidad y para el futuro, he añadído un submódulo llamado "Hoster" que se
 encargará de parsear la URL directa del servidor (Mp4upload, Rapidvideo, Okru, Fire, ...)
@@ -15,6 +14,36 @@ De esta forma la tarea del IServer ahora es encontrar el enlace a su servidor
 basándose en cómo devuelve las urls animeflv para después utilizar el parser correspondiente.
 
 En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden contener algunos errores)
+
+### Versiones nuevas
+
+##### Hosters
+
+* ~~Izanagi~~
+* Natsuki
+* Fembed
+* ~~Rapidvideo~~
+* Mega
+* ~~Streamango~~
+* Okru
+* ~~Yu~~ (yourupload)
+* Maru
+* Netu
+
+##### IServers
+
+* ~~Izanagi~~
+* Natsuki
+* Fembed
+* ~~Rapidvideo~~
+* Mega
+* ~~Streamango~~
+* Okru
+* Yu (yourupload)
+* Maru
+* Netu
+
+### Versiones viejas 
 
 ##### Hosters
 
@@ -50,8 +79,6 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 
 De forma adicional, se han creado tests para cada uno de los servidores, tanto de la función de los hosters como de los servers
 en caso de fallar alguno, primero intentar obtener nuevos enlaces por parte de animeflv
-
-### === Fin Actualización ===
 
 ### Información
 

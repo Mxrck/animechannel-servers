@@ -1,0 +1,63 @@
+{
+    "api": "Anime Channel",
+    "version": 1,
+    "status": 200,
+    "data": {
+        "servers": [
+            {
+                "name": "natsuki",
+                "url": "https://s1.animeflv.net/embed.php?s=natsuki&v=L0U0WlNpL3V6ZHZHQ2hXSVVObHVGek8wQnN5aldSZWw3bUtFajB4dk55dkUwOURMd2JSODRGbVRJdUgxd1RSYUJNREVmN3RSeFAvOVdIbGFVOTd1K01Fd3ppb3Y3YWpsNXppUlh2TDRmbGh0dzVWQWJDSnRvaXZTekNHeDdYbG9pVDdIOWljeVhIcW5VeHRBTy9zZ1RnPT0=",
+                "embed": "https://s1.animeflv.net/embed.php?s=natsuki&v=L0U0WlNpL3V6ZHZHQ2hXSVVObHVGek8wQnN5aldSZWw3bUtFajB4dk55dkUwOURMd2JSODRGbVRJdUgxd1RSYUJNREVmN3RSeFAvOVdIbGFVOTd1K01Fd3ppb3Y3YWpsNXppUlh2TDRmbGh0dzVWQWJDSnRvaXZTekNHeDdYbG9pVDdIOWljeVhIcW5VeHRBTy9zZ1RnPT0=",
+                "direct_url": ""
+            },
+            {
+                "name": "fembed",
+                "url": "https://www.fembed.com/v/8xop40qxqo7",
+                "embed": "https://www.fembed.com/v/8xop40qxqo7",
+                "direct_url": ""
+            },
+            {
+                "name": "rapidvideo",
+                "url": "https://www.rapidvideo.com/e/G1MCV0ZY9O&q=480p",
+                "embed": "https://www.rapidvideo.com/e/G1MCV0ZY9O&q=480p",
+                "direct_url": ""
+            },
+            {
+                "name": "mega",
+                "url": "https://mega.nz/embed#!nygWEQbS!uKdjVpYMpJv4-WXtQ4r5FefqrFRhc2y7FKD4vbFDO8s",
+                "embed": "https://mega.nz/embed#!nygWEQbS!uKdjVpYMpJv4-WXtQ4r5FefqrFRhc2y7FKD4vbFDO8s",
+                "direct_url": ""
+            },
+            {
+                "name": "streamango",
+                "url": "https://streamango.com/embed/lnnnmaaqdptcsecn",
+                "embed": "https://streamango.com/embed/lnnnmaaqdptcsecn",
+                "direct_url": ""
+            },
+            {
+                "name": "okru",
+                "url": "https://ok.ru/videoembed/1402100779631",
+                "embed": "https://ok.ru/videoembed/1402100779631",
+                "direct_url": ""
+            },
+            {
+                "name": "yu",
+                "url": "https://www.yourupload.com/embed/4483X24vM7h0",
+                "embed": "https://www.yourupload.com/embed/4483X24vM7h0",
+                "direct_url": ""
+            },
+            {
+                "name": "maru",
+                "url": "https://my.mail.ru/video/embed/8995617145282893183#budyak.rus#5503",
+                "embed": "https://my.mail.ru/video/embed/8995617145282893183#budyak.rus#5503",
+                "direct_url": ""
+            },
+            {
+                "name": "netu",
+                "url": "https://hqq.tv/player/embed_player.php?vid=Q0lzN04rdUJ3NS9SUW5uS1Z5UHlCZz09",
+                "embed": "https://hqq.tv/player/embed_player.php?vid=Q0lzN04rdUJ3NS9SUW5uS1Z5UHlCZz09",
+                "direct_url": ""
+            }
+        ]
+    }
+}

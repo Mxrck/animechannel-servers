@@ -8,7 +8,7 @@ class ServerMaruTest {
 
     @Test
     fun MaruDownloadValidLink() = runBlocking {
-        val link = "https://animeflv.net/redirector.php?top=/ver/49535/hataraku-saibou-tv-1&server=maru&value=8995617145282887897#budyak.rus#217"
+        val link = "https://my.mail.ru/video/embed/8995617145282893183#budyak.rus#5503"
         val server = MaruServer()
         server.setUrl(link)
         server.process(null)?.join()
@@ -22,7 +22,7 @@ class ServerMaruTest {
 
     @Test
     fun MaruDownloadInvalidLink() = runBlocking {
-        val link = "https://animeflv.net/redirector.php?top=/ver/49535/hataraku-saibou-tv-1&server=maru&value=00000000"
+        val link = "https://my.mail.ru/video/embed/0000000000000000"
         val server = MaruServer()
         server.setUrl(link)
         server.process(null)?.join()

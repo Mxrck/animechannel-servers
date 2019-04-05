@@ -1,4 +1,5 @@
 import mx.com.nitrostudio.animechannel.models.entities.servers.hosts.Fire
+import mx.com.nitrostudio.animechannel.models.entities.servers.hosts.RapidVideoServer
 
 fun main(args: Array<String>) {
     mediafireExample()
@@ -30,6 +31,15 @@ fun main(args: Array<String>) {
 
 fun mediafireExample()
 {
+    val demoRV = "https://www.rapidvideo.com/e/G1MCV0ZY9O&q=480p"
+    val rapidScraper = RapidVideoServer()
+    rapidScraper.setName("Rapidvideo")
+    rapidScraper.setUrl(demoRV)
+    rapidScraper.setEmbed(demoRV)
+    rapidScraper.process(null)?.join()
+    println(rapidScraper.getDirectURL())
+
+
     var urlDemo = "http://www.mediafire.com/file/0djwmh1yr014od3/Colaboraci%C3%B3n+Top+Anime-DongHua+Openings+Invierno+2018.xlsx"
     var fireScraper = Fire()
     fireScraper.setUrl(urlDemo)

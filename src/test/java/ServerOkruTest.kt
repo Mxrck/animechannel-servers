@@ -9,7 +9,7 @@ class ServerOkruTest {
 
     @Test
     fun OkruDownloadValidLink() = runBlocking {
-        val link = "https://animeflv.net/redirector.php?top=/ver/49541/violet-evergarden-14&server=ok&value=927942380143"
+        val link = "https://ok.ru/videoembed/1402100779631"
         val server = OkruServer()
         server.setUrl(link)
         server.process(null)?.join()
@@ -23,7 +23,7 @@ class ServerOkruTest {
 
     @Test
     fun OkruDownloadInvalidLink() = runBlocking {
-        val link = "https://s1.animeflv.net/redirector.php?top=/ver/49466/boruto-naruto-next-generations-63&server=xx&value=00000000"
+        val link = "https://ok.ru/videoembed/00000000000000"
         val server = OkruServer()
         server.setUrl(link)
         server.process(null)?.join()
