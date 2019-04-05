@@ -39,7 +39,7 @@ En este caso ya he ingresado algunos útiles listos para ser usados (aún pueden
 * Mega
 * ~~Streamango~~
 * Okru
-* Yu (yourupload)
+* ~~Yu (yourupload)~~
 * Maru
 * Netu
 
